@@ -1,16 +1,30 @@
 const express = require('express');
 const app = express();
 const port = 8000 ;
+const cors = require('cors')
+const mongoose = require('mongoose')
+const aliceModel = require('./models/alice')
 
 
 // middlewares
 app.use(express.json())
+app.use(cors())
 
 
 // routes
-app.get("/",(req,res)=>{
-    res.send("i'm server - from backend ")
+app.post("/home", async (req,res)=>{
+    // res.send(`i'm server`);
+    console.log(req.body);
+    let data = req.body ;
+    try {
+        await aliceModel.create(data);
+    } catch (error) {
+        console.log(`got error while insert data into database !`);
+    }
+    
 })
+
+
 
 // 404 page
 app.use((req,res)=>{
@@ -18,6 +32,14 @@ app.use((req,res)=>{
 })
 
 
-app.listen(port,()=>{
-    console.log(`server running on port -  ${port}`);
+// Database connection
+mongoose.connect('mongodb://localhost:27017/projectAlice')
+.then(()=>{
+    console.log(`connected to database successfully`);
+    app.listen(port,()=>{
+        console.log(`server running on port -  ${port}`);
+    })
+})
+.catch((val)=>{
+    console.log(`db connection error - ${val}`);
 })
