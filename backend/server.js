@@ -23,6 +23,18 @@ app.post("/home", async (req,res)=>{
     }
     
 })
+app.get("/read", async (req,res)=>{
+    try {
+        
+        let data = await aliceModel.find()
+        if(data){
+            res.json(data)
+        }
+    }
+    catch(err) {
+        console.log(`error with getting data from mongodb databse`);
+    }
+})
 
 
 

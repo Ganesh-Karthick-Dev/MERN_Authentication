@@ -31,15 +31,15 @@ const FormCreate = () => {
     <form >
 
         <label htmlFor="name">name</label>
-        <input type="text" id='name' value={name} onChange={(val)=>setName(val.target.value)} name="name" />
+        <input className='border-black border' type="text" id='name' value={name} onChange={(val)=>setName(val.target.value)} name="name" />
         <br />
         <label htmlFor="name">email</label>
-        <input type="email" value={email} onChange={(val)=>setEmail(val.target.value)}  id='name' name="name" />
+        <input className='border-black border' type="email" value={email} onChange={(val)=>setEmail(val.target.value)}  id='name' name="name" />
         <br />
         <label htmlFor="name">number</label>
-        <input type="number" value={number} onChange={(val)=>setNumber(val.target.value)}  id='name' name="name" />
+        <input className='border-black border' type="number" value={number} onChange={(val)=>setNumber(val.target.value)}  id='name' name="name" />
         <br />
-        <button onClick={(e)=>handleSubmit(e)}>Add User</button>
+        <button className='bg-red-500' onClick={(e)=>handleSubmit(e)}>Add User</button>
 
 
     </form>
