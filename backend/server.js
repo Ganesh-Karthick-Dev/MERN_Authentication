@@ -35,6 +35,16 @@ app.get("/read", async (req,res)=>{
         console.log(`error with getting data from mongodb databse`);
     }
 })
+app.delete("/delete:id",async(req,res)=>{
+    try {
+        let id = req.params.id
+        if(id) {
+            await aliceModel.findByIdAndDelete(id)
+        }
+    } catch (error) {
+        console.log(`err with delete document by id in db !`);
+    }
+})
 
 
 

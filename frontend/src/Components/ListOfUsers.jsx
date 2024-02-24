@@ -18,7 +18,17 @@ const ListOfUsers = () => {
 
     },[])
 
-    // console.log(data);
+
+    const handleDelete = (val) => {
+        let {_id} = val
+        axios
+            .delete(`http://localhost:8000/delete${_id}`)
+            .then(()=>{
+                console.log(`delete id successfully sent to server`);
+            })
+            .catch((err)=>console.log(`error while sent id to server as deleting request - ${err}`))
+    }
+
 
   return (
     <>
@@ -28,6 +38,7 @@ const ListOfUsers = () => {
                 <th>Name</th>
                 <th>Email</th>
                 <th>Number</th>
+                <th>Actions</th>
             </tr>
             {
                data !== null &&  data.map((val)=>{
@@ -36,6 +47,7 @@ const ListOfUsers = () => {
                         <td>{val.name}</td>
                         <td>{val.email}</td>
                         <td>{val.number}</td>
+                        <td><button onClick={()=>handleDelete(val)} className='bg-lime-500 hover:bg-lime-600 p-2 rounded-md text-white'>Delete</button></td>
                     </tr>
                     )
                 })
