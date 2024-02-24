@@ -7,7 +7,7 @@ const aliceSchema = new mongoose.Schema({
         required : true
     },
     email : {
-        type : String,
+        type : Number,
         required : true
     },
     number : {

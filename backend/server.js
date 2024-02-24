@@ -14,7 +14,7 @@ app.use(cors())
 // routes
 app.post("/home", async (req,res)=>{
     // res.send(`i'm server`);
-    console.log(req.body);
+    // console.log(req.body);
     let data = req.body ;
     try {
         await aliceModel.create(data);
