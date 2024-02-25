@@ -22,7 +22,7 @@ const FormCreate = () => {
         }
         else{
             axios
-                .post("http://localhost:8000/home",data)
+                .post("http://localhost:8000/api/workout",data)
                 .then(()=>{
                     console.log(`data sent successfully to server`);
                 })
@@ -60,7 +60,7 @@ const FormCreate = () => {
     </form>
     {
         notvalidate && (
-            <p className=' mt-3 text-red-500'>All fields are required *</p>
+            <p className=' mt-3 text-red-500 text-xs'>All fields are required *</p>
         )
     }
     </div>

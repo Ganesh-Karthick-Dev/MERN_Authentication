@@ -7,7 +7,7 @@ const ListOfUsers = () => {
   // const [show,setShow] = useState(false)
 
   useEffect(() => {
-    axios.get("http://localhost:8000/read").then((val) => {
+    axios.get("http://localhost:8000/api/workout").then((val) => {
       // console.log(val.data);
       setData(val.data);
     });
@@ -21,7 +21,7 @@ const ListOfUsers = () => {
   const handleDelete = (val) => {
     let { _id } = val;
     axios
-      .delete(`http://localhost:8000/delete${_id}`)
+      .delete(`http://localhost:8000/api/workout/${_id}`)
       .then(() => {
         console.log(`delete id successfully sent to server`);
       })

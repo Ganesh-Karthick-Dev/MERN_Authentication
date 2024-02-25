@@ -1,10 +1,12 @@
 const express = require('express');
 const app = express();
-const port = 8000 ;
 const cors = require('cors')
 const mongoose = require('mongoose')
 const aliceModel = require('./models/alice')
-
+const router = require('./routes/TaskRoute')
+require('dotenv').config()
+const port = process.env.PORT
+const mongodbID = process.env.MONGO_ID
 
 // middlewares
 app.use(express.json())
@@ -12,39 +14,42 @@ app.use(cors())
 
 
 // routes
-app.post("/home", async (req,res)=>{
-    // res.send(`i'm server`);
-    // console.log(req.body);
-    let data = req.body ;
-    try {
-        await aliceModel.create(data);
-    } catch (error) {
-        console.log(`got error while insert data into database !`);
-    }
+
+app.use("/api/workout",router)
+
+// app.post("/home", async (req,res)=>{
+//     // res.send(`i'm server`);
+//     // console.log(req.body);
+//     let data = req.body ;
+//     try {
+//         await aliceModel.create(data);
+//     } catch (error) {
+//         console.log(`got error while insert data into database !`);
+//     }
     
-})
-app.get("/read", async (req,res)=>{
-    try {
+// })
+// app.get("/read", async (req,res)=>{
+//     try {
         
-        let data = await aliceModel.find()
-        if(data){
-            res.json(data)
-        }
-    }
-    catch(err) {
-        console.log(`error with getting data from mongodb databse`);
-    }
-})
-app.delete("/delete:id",async(req,res)=>{
-    try {
-        let id = req.params.id
-        if(id) {
-            await aliceModel.findByIdAndDelete(id)
-        }
-    } catch (error) {
-        console.log(`err with delete document by id in db !`);
-    }
-})
+//         let data = await aliceModel.find()
+//         if(data){
+//             res.json(data)
+//         }
+//     }
+//     catch(err) {
+//         console.log(`error with getting data from mongodb databse`);
+//     }
+// })
+// app.delete("/delete:id",async(req,res)=>{
+//     try {
+//         let id = req.params.id
+//         if(id) {
+//             await aliceModel.findByIdAndDelete(id)
+//         }
+//     } catch (error) {
+//         console.log(`err with delete document by id in db !`);
+//     }
+// })
 
 
 
@@ -54,8 +59,9 @@ app.use((req,res)=>{
 })
 
 
+
 // Database connection
-mongoose.connect('mongodb://localhost:27017/projectAlice')
+mongoose.connect(`${mongodbID}/Database1`)
 .then(()=>{
     console.log(`connected to database successfully`);
     app.listen(port,()=>{
