@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const cors = require('cors')
 const mongoose = require('mongoose')
-const aliceModel = require('./models/alice')
 const router = require('./routes/TaskRoute')
 const userRoute = require("./routes/userRoute")
 require('dotenv').config()
