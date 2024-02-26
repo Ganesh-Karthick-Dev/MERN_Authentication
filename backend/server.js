@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors')
 const mongoose = require('mongoose')
-const router = require('./routes/TaskRoute')
+const workoutRoutes = require('./routes/TaskRoute')
 const userRoute = require("./routes/userRoute")
 require('dotenv').config()
 const port = process.env.PORT
@@ -14,7 +14,7 @@ app.use(cors())
 
 
 // routes
-app.use("/api/workout",router)
+app.use("/api/workout",workoutRoutes)
 app.use("/api/user",userRoute)
 
 
