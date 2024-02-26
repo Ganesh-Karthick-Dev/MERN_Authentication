@@ -4,6 +4,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const aliceModel = require('./models/alice')
 const router = require('./routes/TaskRoute')
+const userRoute = require("./routes/userRoute")
 require('dotenv').config()
 const port = process.env.PORT
 const mongodbID = process.env.MONGO_ID
@@ -14,8 +15,10 @@ app.use(cors())
 
 
 // routes
-
 app.use("/api/workout",router)
+app.use("/api/user",userRoute)
+
+
 
 // app.post("/home", async (req,res)=>{
 //     // res.send(`i'm server`);
